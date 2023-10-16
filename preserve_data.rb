@@ -31,4 +31,19 @@ class App
     # 11 => :Method to Add a movie We don not have this option,
     # 12 => :Method to Add a game created by Suleiman
   }.freeze
+
+  
+  # change names of your variables if necessary
+  attr_accessor :books, :albums, :games, :genres, :labels, :authors
+
+  def initialize
+    @books = [] # by Zilola
+    @albums = [] # by Essohanam (change if necessary)
+    @games = [] # by Suleiman (change if necessary)
+    @genres = [] # by Essohanam (change if necessary)
+    @labels = [] # by Zilola
+    @authors = [] # by Suleiman (change if necessary)
+
+    load_all_files
+  end
 end
