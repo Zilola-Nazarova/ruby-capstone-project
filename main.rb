@@ -26,6 +26,7 @@ def main
     option = option.to_i if option =~ /^\d+$/
     if (0..12).include?(option)
       app.call_option(option)
+      break if option.zero?
 
       show_options
     else
