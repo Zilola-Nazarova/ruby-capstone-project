@@ -14,3 +14,9 @@ def show_options
 12 - Add a game
 0 - Exit"
 end
+
+def main
+
+end
+
+main
