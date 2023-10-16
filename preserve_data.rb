@@ -46,4 +46,13 @@ class App
 
     load_all_files
   end
+
+  def call_option(option)
+    if option.zero?
+      save_all_files
+      puts 'Thank you for using our app!'
+    else
+      method(OPTIONS_HASH[option]).call
+    end
+  end
 end
