@@ -16,7 +16,8 @@ def show_options
 end
 
 def main
-
+  puts "Welcome to 'Catalog of my things' App!"
+  show_options
 end
 
 main
