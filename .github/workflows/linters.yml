@@ -1,7 +1,7 @@
 name: Linters
-​
+
 on: pull_request
-​
+
 jobs:
   rubocop:
     name: Rubocop
