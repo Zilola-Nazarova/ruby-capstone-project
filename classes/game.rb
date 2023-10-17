@@ -1,12 +1,12 @@
-class Game
+require_relative 'item'
+
+class Game < Item
   # Attributes
-  attr_accessor :id, :name, :genre, :multiplayer, :last_played_at
+  attr_accessor :multiplayer, :last_played_at
 
   # Methods
-  def initialize(id, name, genre, multiplayer, last_played_at)
-    @id = id
-    @name = name
-    @genre = genre
+  def initialize(multiplayer, last_played_at, publish_date, archived: false)
+    super(publish_date, archived: archived)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
