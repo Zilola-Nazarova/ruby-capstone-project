@@ -37,7 +37,7 @@ module AddBook
         puts 'Label color:'
         color = gets.chomp.to_s
         label = Label.new(title, color)
-        @labels.push(label)
+        @labels.push(label) unless @labels.include?(label)
         @book.label = label
         puts 'Label was created and assigned to the Book'
         break
