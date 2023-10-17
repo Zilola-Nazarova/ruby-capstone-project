@@ -10,7 +10,6 @@ module PreserveData
     # save_authors by Suleiman (change if necessary)
   end
 
-
   def save_books
     books_json = @books.map do |book|
       {
@@ -29,7 +28,7 @@ module PreserveData
 
   def save_labels
     labels_json = @labels.map do |label|
-      label_json = {
+      {
         title: label.title,
         color: label.color
       }
