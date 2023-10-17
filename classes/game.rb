@@ -10,8 +10,4 @@ class Game < Item
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
-
-  def can_be_archived?
-    false
-  end
 end
