@@ -28,7 +28,7 @@ module AddBook
 
   def choose_label
     puts "Add a Label to the Book\n0) Create a new label"
-    list_labels unless @labels.length.empty?
+    list_labels unless @labels.empty?
     loop do
       label_index = gets.chomp.to_i
       if label_index.zero?
