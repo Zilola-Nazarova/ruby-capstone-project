@@ -36,11 +36,13 @@ module AddBook
         title = gets.chomp.to_s
         puts 'Label color:'
         color = gets.chomp.to_s
-        @book.add_label(Label.new(title, color))
+        label = Label.new(title, color)
+        @labels.push(label)
+        @book.label = label
         puts 'Label was created and assigned to the Book'
         break
       elsif (1...(@labels.length)).include?(label_index)
-        @book.add_label(@labels[label_index])
+        @book.label = @labels[label_index]
         puts 'Label was assigned to the Book'
         break
       else
