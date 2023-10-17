@@ -8,13 +8,13 @@ module AddBook
     publisher = gets.chomp.to_s
     puts "Describe a cover state of the book (e.g. 'good', 'bad')"
     cover_state = gets.chomp.to_s
-    puts "When the book was published? Provide in format 'dd-mm-yyyy'"
+    puts "When the book was published? Provide in format 'yyyy-mm-dd'"
     loop do
       publish_date = gets.chomp
       if publish_date =~ /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/
         @book = Book.new(publisher, cover_state, publish_date)
         @books.push(@book)
-        puts 'Book created successfully'
+        puts "Book created successfully\n"
         choose_label
         break
       elsif publish_date == 'exit'
@@ -27,25 +27,31 @@ module AddBook
   end
 
   def choose_label
-    puts "Add a Label to the Book\n0) Create a new label"
-    list_labels unless @labels.empty?
+    puts "\nAdd a Label to the Book:\n0) Create a new label"
+    the_list unless @labels.empty?
     loop do
       label_index = gets.chomp.to_i
       if label_index.zero?
-        puts 'Label title:'
-        title = gets.chomp.to_s
-        puts 'Label color:'
-        color = gets.chomp.to_s
-        @book.add_label(Label.new(title, color))
-        puts 'Label was created and assigned to the Book'
+        create_label
         break
-      elsif (1...(@labels.length)).include?(label_index)
-        @book.add_label(@labels[label_index])
-        puts 'Label was assigned to the Book'
+      elsif (1..(@labels.length)).include?(label_index)
+        @book.label = @labels[label_index - 1]
+        puts "Label was assigned to the Book\n"
         break
       else
         puts "Please provide a valide input (0-#{@labels.length})"
       end
     end
+  end
+
+  def create_label
+    puts 'Label title:'
+    title = gets.chomp.to_s
+    puts 'Label color:'
+    color = gets.chomp.to_s
+    label = Label.new(title, color)
+    @labels.push(label) unless @labels.include?(label)
+    @book.label = label
+    puts "Label was created and assigned to the Book!\n"
   end
 end
