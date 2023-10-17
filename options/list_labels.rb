@@ -4,7 +4,9 @@ module ListLabels
     if @labels.empty?
       puts 'No labels found'
     else
-      puts "#{i + 1}) Title: \"#{label.title}\", Color: #{label.color}, ID: #{label.id}"
+      @labels.each_with_index do |label, i|
+        puts "#{i + 1}) Title: \"#{label.title}\", Color: #{label.color}, ID: #{label.id}"
+      end
     end
   end
 end
