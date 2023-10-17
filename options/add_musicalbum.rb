@@ -21,5 +21,4 @@ def add_music_album
   genre.add_item(album)
 
   puts 'Album added successfully!'
-  save_data
 end
