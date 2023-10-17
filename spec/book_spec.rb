@@ -36,4 +36,22 @@ describe Book do
       expect(@book.archived).to eq false
     end
   end
+
+  context '#can_be_archived?' do
+    it 'should return false for @new_book_good' do
+      expect(@new_book_good.instance_eval('can_be_archived?', __FILE__, __LINE__)).to eq false
+    end
+
+    it 'should return true for @old_book_good' do
+      expect(@old_book_good.instance_eval('can_be_archived?', __FILE__, __LINE__)).to eq true
+    end
+
+    it 'should return true for @new_book_bad' do
+      expect(@new_book_bad.instance_eval('can_be_archived?', __FILE__, __LINE__)).to eq true
+    end
+
+    it 'should return true for @old_book_bad' do
+      expect(@old_book_bad.instance_eval('can_be_archived?', __FILE__, __LINE__)).to eq true
+    end
+  end
 end
