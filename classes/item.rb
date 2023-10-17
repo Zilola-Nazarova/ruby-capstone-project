@@ -21,7 +21,7 @@ class Item
   public
 
   def move_to_archive
-    return unless @can_be_archived
+    return unless can_be_archived?
 
     true
   end
