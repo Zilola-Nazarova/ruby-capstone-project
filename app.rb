@@ -26,7 +26,7 @@ class App
     6 => :list_labels,
     # 7 => :Method to List all authors created by Suleiman,
     # 8 => :Method to List all sources We don not have this option,
-    9 => :add_book,
+    9 => :add_book
     # 10 => :Method to Add a music album created by Essohanam,
     # 11 => :Method to Add a movie We don not have this option,
     # 12 => :Method to Add a game created by Suleiman
