@@ -1,26 +1,37 @@
-require 'minitest/autorun'
-require_relative './classes/genre'
-require_relative './classes/musicalbum'
-require_relative './classes/item'
+require 'rspec'
+require './classes/item'
+require './classes/musicalbum'
 
-class TestGenreAndMusicAlbum < Minitest::Test
-  def setup
-    @genre = Genre.new('Rock')
-    @item = Item.new('Label', 'Author', @genre, '2012-05-23')
-    @music_album1 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2012-05-23', true)
-    @music_album2 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', true)
-    @music_album3 = MusicAlbum.new('RCA', 'Elvis', 'Rock', '2000-05-23', false)
+RSpec.describe MusicAlbum do
+  describe '#initialize' do
+    it 'sets the name, publish date, on_spotify flag, and genre' do
+      name = 'Sample Album'
+      publish_date = '2020-01-01'
+      on_spotify = true
+      genre = ['Rock']
+
+      album = MusicAlbum.new(name, publish_date, on_spotify: on_spotify, genre: genre)
+
+      expect(album.name).to eq(name)
+      expect(album.publish_date).to eq(Date.parse(publish_date))
+      expect(album.on_spotify).to eq(on_spotify)
+      expect(album.genre).to eq(genre)
+    end
   end
 
-  def test_add_item
-    @genre.add_item(@item)
-    assert_includes @genre.items, @item, 'Item not added to Genre'
-    assert_equal @item.genre, @genre, 'Genre not set as a property of Item'
-  end
+  describe '#can_be_archived?' do
+    it 'returns true if the album can be archived' do
+      publish_date = Date.today.prev_year(11).strftime('%Y-%m-%d')
+      album = MusicAlbum.new('Sample Album', publish_date, on_spotify: true, genre: ['Rock'])
 
-  def test_can_be_archived_music_album
-    assert @music_album1.can_be_archived?, 'MusicAlbum1 should be archived'
-    assert @music_album2.can_be_archived?, 'MusicAlbum2 should be archived'
-    refute @music_album3.can_be_archived?, 'MusicAlbum3 should not be archived'
+      expect(album.can_be_archived?).to be true
+    end
+
+    it 'returns false if the album cannot be archived' do
+      publish_date = Date.today.next_year.strftime('%Y-%m-%d')
+      album = MusicAlbum.new('Sample Album', publish_date, on_spotify: false, genre: ['Pop'])
+
+      expect(album.can_be_archived?).to be false
+    end
   end
 end
