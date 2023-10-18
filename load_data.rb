@@ -7,7 +7,7 @@ module LoadData
     load_authors
     load_books
     load_albums
-   load_game
+   load_games
   end
 
   def load_books
