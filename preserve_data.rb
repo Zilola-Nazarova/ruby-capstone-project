@@ -1,6 +1,4 @@
 require 'json'
-require_relative 'classes/musicalbum'
-require_relative 'classes/genre'
 
 module PreserveData
   def save_all_files
@@ -20,8 +18,10 @@ module PreserveData
         publish_date: book.publish_date,
         archived: book.archived,
         label: {
-          title: book.label.title,
-          color: book.label.color
+          id: book.label.id
+        },
+        genre: {
+          id: book.genre.id
         }
       }
     end
@@ -31,6 +31,7 @@ module PreserveData
   def save_labels
     labels_json = @labels.map do |label|
       {
+        id: label.id,
         title: label.title,
         color: label.color
       }
@@ -38,29 +39,30 @@ module PreserveData
     File.write('./files/labels.json', JSON.pretty_generate(labels_json))
   end
 
-  # save_albums and save_genre
   # save albums
-  def save_albums(musicalbum)
-    new_music_album = { id: musicalbum.id, publish_date: musicalbum.publish_date,
-                        on_spotify: musicalbum.on_spotify, genre_id: musicalbum.genre_id }
-    if File.exist?('./files/musicalbum.json')
-      musicalbum_loaded = JSON.parse(File.read('./data/musicalbum.json'))
-      musicalbum_loaded << new_music_album
-      File.write('./files/musicalbum.json', JSON.pretty_generate(musicalbum_loaded))
-    else
-      File.write('./files/musicalbum.json', JSON.pretty_generate([new_music_album]))
+  def save_albums
+    all_music_albums = @music_albums.map do |album|
+      {
+        publish_date: album.publish_date,
+        on_spotify: album.on_spotify,
+        genre_name: album.genre.name,
+        archived: album.archived,
+        label: {
+          id: album.label.id
+        },
+        genre: {
+          id: album.genre.id
+        }
+      }
     end
+    File.write('./files/musicalbum.json', JSON.pretty_generate(all_music_albums))
   end
 
-  # save genre
-  def save_genre(genre)
-    new_genre = { id: genre.id, name: genre.name }
-    if File.exist?('./files/genres.json')
-      genres_loaded = JSON.parse(File.read('./files/genres.json'))
-      genres_loaded << new_genre
-      File.write('./files/genres.json', JSON.pretty_generate(genres_loaded))
-    else
-      File.write('./data/genres.json', JSON.pretty_generate([new_genre]))
+  # save genres
+  def save_genres
+    all_genres = @genres.map do |genre|
+      { id: genre.id, name: genre.name }
     end
+    File.write('./files/genres.json', JSON.pretty_generate(all_genres))
   end
 end
