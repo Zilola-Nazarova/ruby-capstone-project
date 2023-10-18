@@ -49,7 +49,7 @@ module LoadData
       Genre.new(genre['name'], genre['id'])
     end
   end
-  
+
   def load_authors
     return unless File.exist?('./files/authors.json')
 
@@ -58,3 +58,5 @@ module LoadData
       Author.new(author['first_name'], author['last_name'])
     end
 end
+end
+
