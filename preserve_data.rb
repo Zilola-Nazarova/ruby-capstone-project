@@ -4,7 +4,7 @@ module PreserveData
   def save_all_files
     save_books
     save_albums
-    # save_games by Suleiman (change if necessary)
+    save_games
     save_genres
     save_labels
     # save_authors by Suleiman (change if necessary)
@@ -64,5 +64,16 @@ module PreserveData
       { id: genre.id, name: genre.name }
     end
     File.write('./files/genres.json', JSON.pretty_generate(all_genres))
+  end
+  def save_games
+    games_json = @games.map do |game|
+      {
+        multiplayer: game.multiplayer,
+        last_played_at: game.last_played_at.strftime('%Y-%m-%d'),
+        publish_date: game.publish_date,
+        archived: game.archived
+      }
+    end
+    File.write('./files/games.json', JSON.pretty_generate(games_json))
   end
 end
