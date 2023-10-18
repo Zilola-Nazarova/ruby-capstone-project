@@ -13,7 +13,7 @@ RSpec.describe Game do
       expect(game.archived).to eq(false) # Default value for archived is false
     end
   end
-  
+
   describe '#can_be_archived?' do
     context 'when last_played_at is more than 2 years ago and super is true' do
       let(:last_played_at) { '2020-01-01' }
