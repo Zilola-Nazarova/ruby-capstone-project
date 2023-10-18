@@ -7,7 +7,7 @@ module PreserveData
     save_games
     save_genres
     save_labels
-    # save_authors by Suleiman (change if necessary)
+    save_authors
   end
 
   def save_books
@@ -39,7 +39,6 @@ module PreserveData
     File.write('./files/labels.json', JSON.pretty_generate(labels_json))
   end
 
-  # save albums
   def save_albums
     all_music_albums = @music_albums.map do |album|
       {
@@ -58,13 +57,13 @@ module PreserveData
     File.write('./files/musicalbum.json', JSON.pretty_generate(all_music_albums))
   end
 
-  # save genres
   def save_genres
     all_genres = @genres.map do |genre|
       { id: genre.id, name: genre.name }
     end
     File.write('./files/genres.json', JSON.pretty_generate(all_genres))
   end
+
   def save_games
     games_json = @games.map do |game|
       {
@@ -75,5 +74,16 @@ module PreserveData
       }
     end
     File.write('./files/games.json', JSON.pretty_generate(games_json))
+  end
+
+  def save_authors
+    authors_json = @authors.map do |author|
+      {
+        id: author.id,
+        first_name: author.first_name,
+        last_name: author.last_name
+      }
+    end
+    File.write('./files/authors.json', JSON.pretty_generate(authors_json))
   end
 end

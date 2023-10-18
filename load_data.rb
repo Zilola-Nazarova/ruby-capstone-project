@@ -59,5 +59,14 @@ module LoadData
     @games = games_loaded.map do |game|
       Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'], archived: game['archived'])
     end
-  end
-end
+    end
+
+    def load_authors
+      return unless File.exist?('./files/authors.json')
+
+      authors_json = JSON.parse(File.read('./files/authors.json'))
+      @authors = authors_json.map do |author|
+        Author.new(author['first_name'], author['last_name'])
+      end
+    end
+    
