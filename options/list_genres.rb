@@ -1,5 +1,6 @@
 module ListGenres
   def list_genres
+    puts "\nGENRES LIST:\n"
     if @genres.empty?
       puts 'No genres available.'
     else

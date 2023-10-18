@@ -5,8 +5,9 @@ module ListBooks
       puts 'No books found'
     else
       @books.each_with_index do |book, i|
-        puts "#{i + 1}) [#{book.class.name}] Publisher: #{book.publisher}, Publish Date: #{book.publish_date}, " \
-             "Cover State: #{book.cover_state}, Is Archived: #{book.archived}"
+        puts "#{i + 1}) Published on #{book.publish_date}, Publish Date: #{book.publisher}, " \
+             "Cover State: #{book.cover_state}, Genre: #{book.genre.name}, Label: #{book.label.title}"
+        #  "Author: #{book.author.first_name} #{book.author.last_name}"
       end
     end
   end
