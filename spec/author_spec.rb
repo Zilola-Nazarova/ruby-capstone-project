@@ -1,42 +1,52 @@
-require_relative '../classes/author'
+require_relative '../classes/game'
 
-RSpec.describe Author do
-  let(:author) { Author.new('John', 'Doe') }
+RSpec.describe Game do
+  let(:publish_date) { '2022-01-01' }
+  let(:last_played_at) { '2023-01-01' }
+  let(:game) { Game.new(true, last_played_at, publish_date) }
 
   describe '#initialize' do
-    it 'creates a new author with a random id' do
-      expect(author.id).to be_a(Integer)
-    end
-
-    it 'initializes items as an empty array' do
-      expect(author.items).to eq([])
-    end
-  end
-
-  describe '#add_item' do
-    it 'adds an item to the author' do
-      item = double('item')
-      allow(item).to receive(:add_author)
-      author.add_item(item)
-      expect(author.items).to include(item)
-    end
-
-    it 'calls add_author on the added item' do
-      item = double('item')
-      expect(item).to receive(:add_author).with(author)
-      author.add_item(item)
+    it 'creates a new game with specified attributes' do
+      expect(game.multiplayer).to eq(true)
+      expect(game.last_played_at.to_s).to eq(last_played_at)
+      expect(game.publish_date.to_s).to eq(publish_date)
+      expect(game.archived).to eq(false) # Default value for archived is false
     end
   end
+  
+  describe '#can_be_archived?' do
+    context 'when last_played_at is more than 2 years ago and super is true' do
+      let(:last_played_at) { '2020-01-01' }
+      let(:publish_date) { '1994-01-01' }
 
-  describe 'accessors' do
-    it 'allows reading and writing of first_name' do
-      author.first_name = 'Jane'
-      expect(author.first_name).to eq('Jane')
+      it 'returns true' do
+        expect(game.can_be_archived?).to eq(true)
+      end
     end
 
-    it 'allows reading and writing of last_name' do
-      author.last_name = 'Smith'
-      expect(author.last_name).to eq('Smith')
+    context 'when last_played_at is more than 2 years ago and super is false' do
+      let(:last_played_at) { '2020-01-01' }
+      let(:publish_date) { '2022-01-01' }
+
+      it 'returns true' do
+        expect(game.can_be_archived?).to eq(false)
+      end
+    end
+
+    context 'when last_played_at is within the last 2 years' do
+      let(:last_played_at) { '2020-01-01' }
+
+      it 'returns false' do
+        expect(game.can_be_archived?).to eq(false)
+      end
+    end
+
+    context 'when the game is already archived' do
+      let(:game) { Game.new(true, last_played_at, publish_date, archived: true) }
+
+      it 'returns true' do
+        expect(game.can_be_archived?).to eq(false)
+      end
     end
   end
 end
