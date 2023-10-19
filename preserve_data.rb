@@ -24,7 +24,7 @@ module PreserveData
           id: book.genre.id
         },
         author: {
-          id: author.id
+          id: book.author.id
         }
       }
     end
@@ -56,7 +56,7 @@ module PreserveData
           id: album.genre.id
         },
         author: {
-          id: author.id
+          id: album.author.id
         }
       }
     end
