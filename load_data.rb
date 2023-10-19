@@ -32,7 +32,6 @@ module LoadData
     end
   end
 
-  # load albums
   def load_albums
     return unless File.exist?('./files/musicalbum.json')
 
@@ -46,7 +45,6 @@ module LoadData
     end
   end
 
-  # load genre
   def load_genres
     return unless File.exist?('./files/genres.json')
 

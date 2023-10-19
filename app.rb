@@ -37,7 +37,6 @@ class App
     9 => :add_game
   }.freeze
 
-  # change names of your variables if necessary
   attr_accessor :books, :music_albums, :games, :genres, :labels, :authors
 
   def initialize
