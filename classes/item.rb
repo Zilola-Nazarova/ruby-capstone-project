@@ -32,7 +32,7 @@ class Item
   end
 
   private
-  
+
   def can_be_archived?
     now = Date.today
     ten_years_ago = now - 3652

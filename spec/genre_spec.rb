@@ -22,7 +22,7 @@ describe Genre do
       expect(@genre.instance_variable_get(:@id)).to be_an(Integer)
     end
   end
-  
+
   context '#add_item' do
     before :all do
       @genre.add_item(@item)
