@@ -10,15 +10,6 @@ class Item
     @id = Random.rand(1...1000)
   end
 
-  def can_be_archived?
-    now = Date.today
-    ten_years_ago = now - 3652
-    return false if @publish_date.nil?
-    return false if @publish_date > ten_years_ago
-
-    true
-  end
-
   def move_to_archive
     return unless can_be_archived?
 
@@ -38,5 +29,16 @@ class Item
   def label=(label)
     @label = label
     label.items.push(self) unless label.items.include?(self)
+  end
+
+  private
+
+  def can_be_archived?
+    now = Date.today
+    ten_years_ago = now - 3652
+    return false if @publish_date.nil?
+    return false if @publish_date > ten_years_ago
+
+    true
   end
 end
