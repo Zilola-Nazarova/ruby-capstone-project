@@ -62,10 +62,8 @@ module LoadData
     games_json = JSON.parse(File.read('./files/games.json'))
     @games = games_json.map do |game|
       game_obj = Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'],
-                          archived: album['archived'])
-      game_obj.genre = @genres.find { |g| g.id == game['genre']['id'] }
+                          archived: game['archived'])
       game_obj.label = @labels.find { |l| l.id == game['label']['id'] }
-      game_obj.author = @authors.find { |a| a.id == game['author']['id'] }
       game_obj
     end
   end

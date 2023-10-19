@@ -78,13 +78,7 @@ module PreserveData
         publish_date: game.publish_date,
         archived: game.archived,
         label: {
-          id: album.label.id
-        },
-        genre: {
-          id: album.genre.id
-        },
-        author: {
-          id: author.id
+          id: game.label.id
         }
       }
     end
