@@ -1,0 +1,1 @@
+The storage folder for .json files
