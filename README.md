@@ -46,7 +46,6 @@ In order to run this project, you must have installed and configured the followi
 
 1). Ruby
   - the [Ruby](https://www.ruby-lang.org/en/ownload/) should be installed in your machine.
-  - Run `ruby main.rb`.
 
 2.) PostgreSQL
 
@@ -59,6 +58,35 @@ Clone this repository to your desired folder:
   cd my-folder
   git clone: https://github.com/Zilola-Nazarova/ruby-capstone-project.git
 
+```
+### Install
+
+Install the dependencies:
+
+```sh
+gem install
+```
+
+### Usage
+
+To run the project, execute the following command:
+
+```sh
+ruby main.rb
+```
+
+### Run tests
+
+To run tests, run the following command:
+
+```sh
+rspec
+```
+
+You can also check linter errors:
+
+```sh
+rubocop
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
