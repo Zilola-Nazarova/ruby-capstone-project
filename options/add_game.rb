@@ -17,10 +17,10 @@ module AddGame
     multiplayer = @multiplayer_input == 'yes'
 
     puts 'When was the game last played? Provide in format \'yyyy-mm-dd\''
-    date_prompt(@last_played_date)
+    return if date_prompt(@last_played_date).nil?
 
     puts 'When was the game published? Provide in format \'yyyy-mm-dd\''
-    date_prompt(@publish_date)
+    return if date_prompt(@publish_date).nil?
 
     game = Game.new(multiplayer, @last_played_date, @publish_date)
     @games.push(game)
