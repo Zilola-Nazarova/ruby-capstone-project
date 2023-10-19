@@ -22,6 +22,9 @@ module PreserveData
         },
         genre: {
           id: book.genre.id
+        },
+        author: {
+          id: author.id
         }
       }
     end
@@ -51,6 +54,9 @@ module PreserveData
         },
         genre: {
           id: album.genre.id
+        },
+        author: {
+          id: author.id
         }
       }
     end
@@ -68,9 +74,18 @@ module PreserveData
     games_json = @games.map do |game|
       {
         multiplayer: game.multiplayer,
-        last_played_at: game.last_played_at.strftime('%Y-%m-%d'),
+        last_played_at: game.last_played_at,
         publish_date: game.publish_date,
-        archived: game.archived
+        archived: game.archived,
+        label: {
+          id: album.label.id
+        },
+        genre: {
+          id: album.genre.id
+        },
+        author: {
+          id: author.id
+        }
       }
     end
     File.write('./files/games.json', JSON.pretty_generate(games_json))

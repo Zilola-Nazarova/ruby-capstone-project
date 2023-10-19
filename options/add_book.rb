@@ -27,7 +27,7 @@ module AddBook
 
     choose_label(book)
     choose_genre(book)
-    # choose_author(book)
+    choose_author(book)
 
     puts "Book created successfully!\n"
   end

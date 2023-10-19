@@ -29,7 +29,7 @@ module AddMusicAlbum
 
     choose_label(album)
     choose_genre(album)
-    # choose_author(album)
+    choose_author(album)
 
     puts "Album added successfully!\n"
   end
