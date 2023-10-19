@@ -1,4 +1,5 @@
 require './classes/label'
+require './classes/item'
 
 describe Label do
   before :all do
